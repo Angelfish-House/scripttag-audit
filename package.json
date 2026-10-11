@@ -24,9 +24,7 @@
     "node": ">=22.12"
   },
   "dependencies": {
-    "@cloudflare/workers-types": "^5.20261011.1",
     "@prisma/client": "^6.16.3",
-    "@react-router/cloudflare": "^8.4.0",
     "@react-router/dev": "7.18.2",
     "@react-router/fs-routes": "7.18.2",
     "@react-router/node": "7.18.2",
