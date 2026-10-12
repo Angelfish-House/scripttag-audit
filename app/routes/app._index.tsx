@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router";
+import { useEffect } from "react";
 import { authenticate } from "../shopify.server";
 import { requirePayment } from "../utils/billing.server";
 
@@ -56,6 +57,20 @@ export const loader = async ({ request }) => {
 
 export default function Index() {
   const { tags, summary } = useLoaderData<typeof loader>();
+
+  useEffect(() => {
+    async function ping() {
+      try {
+        const token = await window.shopify.idToken();
+        await fetch("/app/session-check", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch (e) {
+        console.log("session ping skipped", e);
+      }
+    }
+    ping();
+  }, []);
 
   return (
     <s-page heading="ScriptTag Auditor">
