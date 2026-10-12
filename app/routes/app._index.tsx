@@ -1,10 +1,8 @@
 import { useLoaderData } from "react-router";
 import { useEffect } from "react";
 import { authenticate } from "../shopify.server";
-import { requirePayment } from "../utils/billing.server";
 
 export const loader = async ({ request }) => {
-  await requirePayment(request);
   const { admin } = await authenticate.admin(request);
 
   const response = await admin.graphql(`
